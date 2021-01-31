@@ -16,7 +16,7 @@ composer require imponeer/smarty-translate
 
 Otherwise, you need to include manually files from `src/` directory. 
 
-## Registering extensions in Smarty
+## Registering in Smarty
 
 If you want to use these extensions from this package in your project you need register them with [`registerPlugin` function](https://www.smarty.net/docs/en/api.register.plugin.tpl) from [Smarty](https://www.smarty.net). For example:
 ```php
