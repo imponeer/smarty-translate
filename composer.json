@@ -18,5 +18,11 @@
             "name": "Raimondas Rimkevičius",
             "email": "github@mekdrop.name"
         }
+    ],
+    "keywords": [
+        "smarty",
+        "translate",
+        "symfony",
+        "smarty-plugins"
     ]
 }
