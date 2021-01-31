@@ -1,0 +1,22 @@
+{
+    "name": "imponeer/smarty-translate",
+    "description": "Library that provides trans modifer and block smarty extensions based on Symfony Translations contracts",
+    "type": "library",
+    "require": {
+        "imponeer/smarty-extensions-contracts": "^1.0",
+        "php": ">=7.1",
+        "symfony/translation-contracts": "^2.3"
+    },
+    "autoload": {
+        "psr-4": {
+            "Imponeer\\Smarty\\Extensions\\Translate\\": "src/"
+        }
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Raimondas Rimkevičius",
+            "email": "github@mekdrop.name"
+        }
+    ]
+}
