@@ -3,7 +3,7 @@
     "description": "Library that provides trans modifer and block smarty extensions based on Symfony Translations contracts",
     "type": "library",
     "require": {
-        "imponeer/smarty-extensions-contracts": "^1.0",
+        "imponeer/smarty-extensions-contracts": "^1.0 || ^2.0",
         "php": ">=7.2.5",
         "symfony/translation-contracts": "^2.3"
     },
