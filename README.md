@@ -4,7 +4,7 @@
 
 # Smarty Translate
 
-This library adds new smarty block and var modifier `trans` for using with [Symfony Translation](symfony/translation) compatible library.
+This library adds new smarty block and var modifier `trans` for using with [Symfony Translation](https://github.com/symfony/translation) compatible library.
 
 ## Installation
 
