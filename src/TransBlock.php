@@ -2,8 +2,8 @@
 
 namespace Imponeer\Smarty\Extensions\Translate;
 
-use Imponeer\Contracts\Smarty\Extension\SmartyBlockInterface;
-use Smarty_Internal_Template;
+use Smarty\BlockHandler\BlockHandlerInterface;
+use Smarty\Template;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
 /**
@@ -11,36 +11,16 @@ use Symfony\Contracts\Translation\TranslatorInterface;
  *
  * @package Imponeer\Smarty\Extensions\Translate
  */
-class TransBlock implements SmartyBlockInterface
+class TransBlock implements BlockHandlerInterface
 {
 
-    /**
-     * @var TranslatorInterface
-     */
-    private $translator;
-
-    /**
-     * TransVarModifier constructor.
-     *
-     * @param TranslatorInterface $translator
-     */
-    public function __construct(TranslatorInterface $translator)
+    public function __construct(
+        private readonly TranslatorInterface $translator
+    )
     {
-        $this->translator = $translator;
     }
 
-    /**
-     * @inheritDoc
-     */
-    public function getName(): string
-    {
-        return 'trans';
-    }
-
-    /**
-     * @inheritDoc
-     */
-    public function execute(array $params, ?string $content, Smarty_Internal_Template $template, &$repeat)
+    public function handle($params, $content, Template $template, &$repeat)
     {
         if (!$repeat && isset($content)) {
             return $this->translator->trans(
@@ -50,5 +30,12 @@ class TransBlock implements SmartyBlockInterface
                 $params['locale'] ?? null
             );
         }
+
+        return $content ?? '';
+    }
+
+    public function isCacheable(): bool
+    {
+        return false;
     }
 }
