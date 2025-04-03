@@ -4,7 +4,7 @@
     "type": "library",
     "require": {
         "imponeer/smarty-extensions-contracts": "^3.0",
-        "php": "^8.0",
+        "php": "^8.3",
         "symfony/translation-contracts": "^2.3"
     },
     "autoload": {
@@ -31,5 +31,8 @@
     },
     "scripts": {
         "test": "phpunit --testdox"
+    },
+    "config": {
+        "sort-packages": true
     }
 }
