@@ -8,18 +8,9 @@ use Symfony\Component\Translation\Translator;
 class TransVarModifierTest extends TestCase
 {
 
-    /**
-     * @var Translator
-     */
-    private $translator;
-    /**
-     * @var TransVarModifier
-     */
-    private $plugin;
-    /**
-     * @var Smarty
-     */
-    private $smarty;
+    private Translator $translator;
+    private TransVarModifier $plugin;
+    private Smarty $smarty;
 
     protected function setUp(): void
     {
@@ -58,11 +49,13 @@ class TransVarModifierTest extends TestCase
         parent::setUp();
     }
 
-    public function testGetName() {
+    public function testGetName(): void
+    {
         $this->assertSame('trans', $this->plugin->getName());
     }
 
-    public function testInvokeWithCorrectDomain() {
+    public function testInvokeWithCorrectDomain(): void
+    {
         $src = urlencode('{"test"|trans:[]:"default"}');
         $ret = $this->smarty->fetch('eval:urlencode:'.$src);
         $this->assertSame(
@@ -71,7 +64,8 @@ class TransVarModifierTest extends TestCase
         );
     }
 
-    public function testInvokeWithoutDomain() {
+    public function testInvokeWithoutDomain(): void
+    {
         $src = urlencode('{"test2"|trans}');
         $ret = $this->smarty->fetch('eval:urlencode:'.$src);
         $this->assertSame(
@@ -80,7 +74,8 @@ class TransVarModifierTest extends TestCase
         );
     }
 
-    public function testInvokeWithCorrectParameters() {
+    public function testInvokeWithCorrectParameters(): void
+    {
         $src = urlencode('{"test3"|trans:["value" => "xx"]}');
         $ret = $this->smarty->fetch('eval:urlencode:'.$src);
         $this->assertSame(
@@ -89,7 +84,8 @@ class TransVarModifierTest extends TestCase
         );
     }
 
-    public function testInvokeWithDomainAndCorrectParameters() {
+    public function testInvokeWithDomainAndCorrectParameters(): void
+    {
         $src = urlencode('{"test4"|trans:["value" => "xx"]:"default"}');
         $ret = $this->smarty->fetch('eval:urlencode:'.$src);
         $this->assertSame(
@@ -98,7 +94,8 @@ class TransVarModifierTest extends TestCase
         );
     }
 
-    public function testInvokeWithDomainLocaleAndCorrectParameters() {
+    public function testInvokeWithDomainLocaleAndCorrectParameters(): void
+    {
         $src = urlencode('{"test4"|trans:["value" => "xx"]:"default":"lt"}');
         $ret = $this->smarty->fetch('eval:urlencode:'.$src);
         $this->assertSame(
@@ -107,7 +104,8 @@ class TransVarModifierTest extends TestCase
         );
     }
 
-    public function testInvokeWithNotCorrectDomain() {
+    public function testInvokeWithNotCorrectDomain(): void
+    {
         $src = urlencode('{"test4"|trans:["value" => "xx"]:"default2"}');
         $ret = $this->smarty->fetch('eval:urlencode:'.$src);
         $this->assertSame("test4", $ret);
@@ -117,7 +115,8 @@ class TransVarModifierTest extends TestCase
         );
     }
 
-    public function testInvokeWithNotCorrectParameters() {
+    public function testInvokeWithNotCorrectParameters(): void
+    {
         $src = urlencode('{"test4"|trans:["valueX" => "xx"]:"default"}');
         $ret = $this->smarty->fetch('eval:urlencode:'.$src);
         $this->assertSame(
@@ -126,7 +125,8 @@ class TransVarModifierTest extends TestCase
         );
     }
 
-    public function testInvokeWithNotCorrectLocale() {
+    public function testInvokeWithNotCorrectLocale(): void
+    {
         $src = urlencode('{"test4"|trans:["valueX" => "xx"]:"default":"be"}');
         $ret = $this->smarty->fetch('eval:urlencode:'.$src);
         $this->assertSame(
