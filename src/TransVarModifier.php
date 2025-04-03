@@ -2,7 +2,6 @@
 
 namespace Imponeer\Smarty\Extensions\Translate;
 
-use Imponeer\Contracts\Smarty\Extension\SmartyModifierInterface;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
 /**
@@ -10,21 +9,12 @@ use Symfony\Contracts\Translation\TranslatorInterface;
  *
  * @package Imponeer\Smarty\Extensions\Translate
  */
-class TransVarModifier implements SmartyModifierInterface
+class TransVarModifier
 {
-    /**
-     * @var TranslatorInterface
-     */
-    private $translator;
-
-    /**
-     * TransVarModifier constructor.
-     *
-     * @param TranslatorInterface $translator
-     */
-    public function __construct(TranslatorInterface $translator)
+    public function __construct(
+        private readonly TranslatorInterface $translator
+    )
     {
-        $this->translator = $translator;
     }
 
     /**
@@ -37,16 +27,8 @@ class TransVarModifier implements SmartyModifierInterface
      *
      * @return string
      */
-    public function execute($message, array $parameters = [], ?string $domain = null, ?string $locale = null): string
+    public function __invoke(string $message, array $parameters = [], ?string $domain = null, ?string $locale = null): string
     {
         return $this->translator->trans($message, $parameters, $domain, $locale);
-    }
-
-    /**
-     * @inheritDoc
-     */
-    public function getName(): string
-    {
-        return 'trans';
     }
 }

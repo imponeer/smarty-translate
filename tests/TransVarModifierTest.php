@@ -1,7 +1,9 @@
 <?php
 
+use Imponeer\Smarty\Extensions\Translate\TranslationSmartyExtension;
 use Imponeer\Smarty\Extensions\Translate\TransVarModifier;
 use PHPUnit\Framework\TestCase;
+use Smarty\Smarty;
 use Symfony\Component\Translation\Loader\ArrayLoader;
 use Symfony\Component\Translation\Translator;
 
@@ -9,7 +11,6 @@ class TransVarModifierTest extends TestCase
 {
 
     private Translator $translator;
-    private TransVarModifier $plugin;
     private Smarty $smarty;
 
     protected function setUp(): void
@@ -35,23 +36,11 @@ class TransVarModifierTest extends TestCase
             'test4' => 'TEST4[X] {value}',
         ], 'lt', 'default');
 
-
-        $this->plugin = new TransVarModifier($this->translator);
-
         $this->smarty = new Smarty();
         $this->smarty->caching = Smarty::CACHING_OFF;
-        $this->smarty->registerPlugin(
-            'modifier',
-            $this->plugin->getName(),
-            [$this->plugin, 'execute']
-        );
+        $this->smarty->addExtension(new TranslationSmartyExtension($this->translator));
 
         parent::setUp();
-    }
-
-    public function testGetName(): void
-    {
-        $this->assertSame('trans', $this->plugin->getName());
     }
 
     public function testInvokeWithCorrectDomain(): void

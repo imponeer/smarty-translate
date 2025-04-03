@@ -1,6 +1,7 @@
 [![License](https://img.shields.io/github/license/imponeer/smarty-translate.svg)](LICENSE)
 [![GitHub release](https://img.shields.io/github/release/imponeer/smarty-translate.svg)](https://github.com/imponeer/smarty-translate/releases) [![Maintainability](https://api.codeclimate.com/v1/badges/79f89e2fe21c0076c29a/maintainability)](https://codeclimate.com/github/imponeer/smarty-translate/maintainability) [![PHP](https://img.shields.io/packagist/php-v/imponeer/smarty-translate.svg)](http://php.net) 
-[![Packagist](https://img.shields.io/packagist/dm/imponeer/smarty-translate.svg)](https://packagist.org/packages/imponeer/smarty-translate)
+[![Packagist](https://img.shields.io/packagist/dm/imponeer/smarty-translate.svg)](https://packagist.org/packages/imponeer/smarty-translate) [![Smarty version requirement](https://img.shields.io/packagist/dependency-v/imponeer/smarty-translate/smarty%2Fsmarty)
+](https://smarty-php.github.io)
 
 # Smarty Translate
 
@@ -21,10 +22,9 @@ Otherwise, you need to include manually files from `src/` directory.
 If you want to use these extensions from this package in your project you need register them with [`registerPlugin` function](https://www.smarty.net/docs/en/api.register.plugin.tpl) from [Smarty](https://www.smarty.net). For example:
 ```php
 $smarty = new \Smarty();
-$transBlockPlugin = new \Imponeer\Smarty\Extensions\Translate\TransBlock($translator);
-$transModifierPlugin = new \Imponeer\Smarty\Extensions\Translate\TransVarModifier($translator);
-$smarty->registerPlugin('block', $transBlockPlugin->getName(), [$transBlockPlugin, 'execute']);
-$smarty->registerPlugin('modifier', $transModifierPlugin->getName(), [$transModifierPlugin, 'execute']);
+$this->smarty->addExtension(
+    new \Imponeer\Smarty\Extensions\Translate\TranslationSmartyExtension($translator)
+);
 ```
 
 ## Using from templates
@@ -53,6 +53,6 @@ Var modifier also supports these attributes, but syntax is a bit different - `tr
 
 ## How to contribute?
 
-If you want to add some functionality or fix bugs, you can fork, change and create pull request. If you not sure how this works, try [interactive GitHub tutorial](https://skills.github.com).
+If you want to add functionality or fix bugs, you can fork the repository, make changes, and create a pull request. If you're not sure how this works, try reading the [GitHub documentation](https://docs.github.com/en/github/collaborating-with-issues-and-pull-requests/about-pull-requests).
 
 If you found any bug or have some questions, use [issues tab](https://github.com/imponeer/smarty-translate/issues) and write there your questions.
