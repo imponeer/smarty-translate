@@ -26,12 +26,16 @@
         "smarty-plugins"
     ],
     "require-dev": {
+        "phpstan/phpstan": "^2.1",
         "phpunit/phpunit": ">=11",
         "squizlabs/php_codesniffer": "^3.7",
         "symfony/translation": ">=7.0"
     },
     "scripts": {
-        "test": "phpunit --testdox"
+        "test": "phpunit --testdox",
+        "phpcs": "phpcs",
+        "phpcbf": "phpcbf",
+        "phpstan": "phpstan analyse"
     },
     "config": {
         "sort-packages": true
