@@ -13,11 +13,9 @@ use Symfony\Contracts\Translation\TranslatorInterface;
  */
 class TransBlock implements BlockHandlerInterface
 {
-
     public function __construct(
         private readonly TranslatorInterface $translator
-    )
-    {
+    ) {
     }
 
     public function handle($params, $content, Template $template, &$repeat)

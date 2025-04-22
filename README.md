@@ -1,5 +1,5 @@
 [![License](https://img.shields.io/github/license/imponeer/smarty-translate.svg)](LICENSE)
-[![GitHub release](https://img.shields.io/github/release/imponeer/smarty-translate.svg)](https://github.com/imponeer/smarty-translate/releases) [![Maintainability](https://api.codeclimate.com/v1/badges/79f89e2fe21c0076c29a/maintainability)](https://codeclimate.com/github/imponeer/smarty-translate/maintainability) [![PHP](https://img.shields.io/packagist/php-v/imponeer/smarty-translate.svg)](http://php.net) 
+[![GitHub release](https://img.shields.io/github/release/imponeer/smarty-translate.svg)](https://github.com/imponeer/smarty-translate/releases) [![PHP](https://img.shields.io/packagist/php-v/imponeer/smarty-translate.svg)](http://php.net) 
 [![Packagist](https://img.shields.io/packagist/dm/imponeer/smarty-translate.svg)](https://packagist.org/packages/imponeer/smarty-translate) [![Smarty version requirement](https://img.shields.io/packagist/dependency-v/imponeer/smarty-translate/smarty%2Fsmarty)
 ](https://smarty-php.github.io)
 

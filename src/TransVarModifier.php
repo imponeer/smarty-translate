@@ -13,8 +13,7 @@ class TransVarModifier
 {
     public function __construct(
         private readonly TranslatorInterface $translator
-    )
-    {
+    ) {
     }
 
     /**
@@ -27,8 +26,12 @@ class TransVarModifier
      *
      * @return string
      */
-    public function __invoke(string $message, array $parameters = [], ?string $domain = null, ?string $locale = null): string
-    {
+    public function __invoke(
+        string $message,
+        array $parameters = [],
+        ?string $domain = null,
+        ?string $locale = null
+    ): string {
         return $this->translator->trans($message, $parameters, $domain, $locale);
     }
 }
