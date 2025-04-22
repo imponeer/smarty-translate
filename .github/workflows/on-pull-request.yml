@@ -37,6 +37,8 @@ jobs:
         run: composer test
       - name: PHP CS
         run: composer exec phpcs
+      - name: Run PHPStan
+        run: composer exec phpstan
       - name: Install Composer dependencies (without dev)
         run: composer install --no-progress --no-dev --no-suggest --prefer-dist --optimize-autoloader
 

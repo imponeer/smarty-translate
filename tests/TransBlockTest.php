@@ -10,7 +10,7 @@ use Symfony\Component\Translation\Translator;
 
 class TransBlockTest extends TestCase
 {
-    private ?Translator $translator;
+    private Translator $translator;
     private Smarty $smarty;
 
     protected function setUp(): void
