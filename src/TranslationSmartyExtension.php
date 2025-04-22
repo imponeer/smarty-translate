@@ -8,11 +8,9 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 
 class TranslationSmartyExtension extends Base
 {
-
     public function __construct(
         private readonly TranslatorInterface $translator
-    )
-    {
+    ) {
     }
 
     public function getModifierCallback(string $modifierName)
@@ -32,5 +30,4 @@ class TranslationSmartyExtension extends Base
 
         return parent::getBlockHandler($blockTagName);
     }
-
 }

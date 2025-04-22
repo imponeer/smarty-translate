@@ -1,7 +1,8 @@
 <?php
 
+namespace Imponeer\Smarty\Extensions\Translate\Tests;
+
 use Imponeer\Smarty\Extensions\Translate\TranslationSmartyExtension;
-use Imponeer\Smarty\Extensions\Translate\TransVarModifier;
 use PHPUnit\Framework\TestCase;
 use Smarty\Smarty;
 use Symfony\Component\Translation\Loader\ArrayLoader;
@@ -9,7 +10,6 @@ use Symfony\Component\Translation\Translator;
 
 class TransVarModifierTest extends TestCase
 {
-
     private Translator $translator;
     private Smarty $smarty;
 
@@ -46,7 +46,7 @@ class TransVarModifierTest extends TestCase
     public function testInvokeWithCorrectDomain(): void
     {
         $src = urlencode('{"test"|trans:[]:"default"}');
-        $ret = $this->smarty->fetch('eval:urlencode:'.$src);
+        $ret = $this->smarty->fetch('eval:urlencode:' . $src);
         $this->assertSame(
             $this->translator->trans('test', [], 'default'),
             $ret
@@ -56,7 +56,7 @@ class TransVarModifierTest extends TestCase
     public function testInvokeWithoutDomain(): void
     {
         $src = urlencode('{"test2"|trans}');
-        $ret = $this->smarty->fetch('eval:urlencode:'.$src);
+        $ret = $this->smarty->fetch('eval:urlencode:' . $src);
         $this->assertSame(
             $this->translator->trans('test2'),
             $ret
@@ -66,7 +66,7 @@ class TransVarModifierTest extends TestCase
     public function testInvokeWithCorrectParameters(): void
     {
         $src = urlencode('{"test3"|trans:["value" => "xx"]}');
-        $ret = $this->smarty->fetch('eval:urlencode:'.$src);
+        $ret = $this->smarty->fetch('eval:urlencode:' . $src);
         $this->assertSame(
             $this->translator->trans('test3', ['value' => 'xx']),
             $ret
@@ -76,7 +76,7 @@ class TransVarModifierTest extends TestCase
     public function testInvokeWithDomainAndCorrectParameters(): void
     {
         $src = urlencode('{"test4"|trans:["value" => "xx"]:"default"}');
-        $ret = $this->smarty->fetch('eval:urlencode:'.$src);
+        $ret = $this->smarty->fetch('eval:urlencode:' . $src);
         $this->assertSame(
             $this->translator->trans('test4', ['value' => 'xx'], 'default'),
             $ret
@@ -86,7 +86,7 @@ class TransVarModifierTest extends TestCase
     public function testInvokeWithDomainLocaleAndCorrectParameters(): void
     {
         $src = urlencode('{"test4"|trans:["value" => "xx"]:"default":"lt"}');
-        $ret = $this->smarty->fetch('eval:urlencode:'.$src);
+        $ret = $this->smarty->fetch('eval:urlencode:' . $src);
         $this->assertSame(
             $this->translator->trans('test4', ['value' => 'xx'], 'default', 'lt'),
             $ret
@@ -96,7 +96,7 @@ class TransVarModifierTest extends TestCase
     public function testInvokeWithNotCorrectDomain(): void
     {
         $src = urlencode('{"test4"|trans:["value" => "xx"]:"default2"}');
-        $ret = $this->smarty->fetch('eval:urlencode:'.$src);
+        $ret = $this->smarty->fetch('eval:urlencode:' . $src);
         $this->assertSame("test4", $ret);
         $this->assertSame(
             $this->translator->trans('test4', ['value' => 'xx'], 'default2'),
@@ -107,7 +107,7 @@ class TransVarModifierTest extends TestCase
     public function testInvokeWithNotCorrectParameters(): void
     {
         $src = urlencode('{"test4"|trans:["valueX" => "xx"]:"default"}');
-        $ret = $this->smarty->fetch('eval:urlencode:'.$src);
+        $ret = $this->smarty->fetch('eval:urlencode:' . $src);
         $this->assertSame(
             $this->translator->trans('test4', ['valueX' => 'xx'], 'default'),
             $ret
@@ -117,11 +117,10 @@ class TransVarModifierTest extends TestCase
     public function testInvokeWithNotCorrectLocale(): void
     {
         $src = urlencode('{"test4"|trans:["valueX" => "xx"]:"default":"be"}');
-        $ret = $this->smarty->fetch('eval:urlencode:'.$src);
+        $ret = $this->smarty->fetch('eval:urlencode:' . $src);
         $this->assertSame(
             $this->translator->trans('test4', ['value' => 'xx'], 'default', 'be'),
             $ret
         );
     }
-
 }
